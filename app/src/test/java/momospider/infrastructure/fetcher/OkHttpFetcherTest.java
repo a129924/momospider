@@ -39,4 +39,14 @@ public class OkHttpFetcherTest {
         Assertions.assertNotNull(html);
         Assertions.assertTrue(html.contains("<html"));
     }
+
+    @Test
+    public void testFetchMomoShop() throws HttpException, IOException {
+
+        String html = fetcher.getHtml(
+                "https://www.momoshop.com.tw/search/searchShop.jsp?keyword=%E5%AC%B0%E5%85%92%E8%BB%8A&_isFuzzy=0&searchType=1");
+
+        Assertions.assertNotNull(html);
+        Assertions.assertTrue(html.contains("<html"));
+    }
 }
