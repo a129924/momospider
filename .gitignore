@@ -1,5 +1,6 @@
 # custom
 .vscode
+app/src/*/resources
 
 # Ignore Gradle project-specific cache directory
 .gradle

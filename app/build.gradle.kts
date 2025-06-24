@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "momospider"
-version = "1.1.0"
+version = "1.2.0"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -21,6 +21,7 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
+    testImplementation("org.mockito:mockito-core:5.10.0")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 

@@ -1,0 +1,42 @@
+package momospider.infrastructure.fetcher;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import momospider.core.exception.http.HttpException;
+import momospider.infrastructure.config.ConfigLoader;
+import momospider.infrastructure.http.okhttp.HttpClient;
+
+public class OkHttpFetcherTest {
+    private HttpClient httpClient;
+    private OkHttpFetcher fetcher;
+
+    @BeforeEach
+    public void setUp() throws IOException {
+        Map<String, String> headers = ConfigLoader.loadConfig("src/test/resources/header.properties");
+
+        httpClient = new HttpClient(Optional.of(headers));
+        fetcher = new OkHttpFetcher(httpClient);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (httpClient != null) {
+            httpClient.close();
+        }
+    }
+
+    @Test
+    public void testFetchHtml() throws HttpException {
+
+        String html = fetcher.getHtml("https://www.google.com/");
+        Assertions.assertNotNull(html);
+        Assertions.assertTrue(html.contains("<html"));
+    }
+}
